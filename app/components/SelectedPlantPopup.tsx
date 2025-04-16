@@ -81,7 +81,7 @@ export const SelectedPlantPopup = ({
           {/* Content section */}
           <div className="p-6">
             {/* Water information cards */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               {/* Water level card */}
               <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 shadow-sm">
                 <h3 className="text-sm font-semibold text-blue-800 mb-2">
