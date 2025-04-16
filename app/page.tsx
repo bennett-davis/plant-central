@@ -69,13 +69,6 @@ export default function Home() {
             />
           ))}
         </div>
-        <div
-          id="addPlantButton"
-          onClick={() => setShowAddForm(true)}
-          className="absolute bottom-20 right-20 bg-green-400 rounded-full size-18 shadow-xl hover:bg-green-600 transition-colors text-3xl flex items-center justify-center p-4 cursor-pointer"
-        >
-          +
-        </div>
 
         {showAddForm && (
           <AddPlantForm
@@ -91,6 +84,13 @@ export default function Home() {
           />
         ) : null}
       </main>
+      <div
+        id="addPlantButton"
+        onClick={() => setShowAddForm(true)}
+        className="fixed bottom-5 right-5 lg:bottom-15 lg:right-15 bg-green-400 rounded-full size-18 shadow-xl hover:bg-green-600 transition-colors text-3xl flex items-center justify-center p-4 cursor-pointer"
+      >
+        +
+      </div>
     </div>
   );
 }
