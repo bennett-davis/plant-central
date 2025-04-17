@@ -6,11 +6,14 @@ import AddPlantForm from "./components/AddPlantForm";
 import { getUserPlants } from "@/lib/plantServices";
 import { Plant } from "@/types/plant";
 import { SelectedPlantPopup } from "./components/SelectedPlantPopup";
+import DynamicBackground from "./components/DynamicBackground";
+import TimeControlPanel from "./components/TimeControlPanel";
 
 export default function Home() {
   const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [plants, setPlants] = useState<Plant[]>([]);
+  const [simulatedHour, setSimulatedHour] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchUserPlants = async (userId: string) => {
@@ -45,15 +48,22 @@ export default function Home() {
     setPlants((prevPlants) => [...prevPlants, plantToAdd]);
   };
 
-  return (
-    <div className="bg-green-50 grid grid-rows-[auto_1fr_auto] items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 ">
-      {/* <header className="text-center">
-        <h1 className="text-3xl font-bold mb-2">Plant Central</h1>
-        <p className="text-gray-600">Manage your plant collection</p>
-      </header> */}
+  const handleTimeChange = (hour: number | null) => {
+    setSimulatedHour(hour);
+  };
 
-      <main>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+  const IS_ADMIN = false;
+
+  return (
+    <div className="relative grid grid-rows-[auto_1fr_auto] items-center min-h-screen p-6 md:p-12 md:px-10 lg:px-10">
+      {/* Dynamic background component with simulated time */}
+      <DynamicBackground simulatedHour={simulatedHour} />
+
+      {/* Time control panel */}
+      {IS_ADMIN ? <TimeControlPanel onTimeChange={handleTimeChange} /> : null}
+
+      <main className="relative z-10 justify-self-center w-full max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {plants.map((plant, _i) => (
             <PlantBox
               key={_i}
@@ -66,6 +76,7 @@ export default function Home() {
               waterFreqDays={plant.waterFreqDays}
               waterFrequency={plant.waterFrequency}
               onPress={handlePlantClick}
+              simulatedHour={simulatedHour}
             />
           ))}
         </div>
@@ -87,7 +98,7 @@ export default function Home() {
       <div
         id="addPlantButton"
         onClick={() => setShowAddForm(true)}
-        className="fixed bottom-5 right-5 lg:bottom-15 lg:right-15 bg-green-400 rounded-full size-18 shadow-xl hover:bg-green-600 transition-colors text-3xl flex items-center justify-center p-4 cursor-pointer"
+        className="fixed bottom-5 right-5 lg:bottom-15 lg:right-15 bg-green-400 rounded-full size-18 shadow-xl hover:bg-green-600 transition-colors text-3xl flex items-center justify-center p-4 cursor-pointer z-20"
       >
         +
       </div>

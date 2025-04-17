@@ -32,11 +32,11 @@ export const SelectedPlantPopup = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
+      className="fixed inset-0 bg-black/35 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="bg-slate-300/60 backdrop-blur-3xl rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl"
       >
         <>
           {/* Hero section with plant image */}
@@ -79,9 +79,9 @@ export const SelectedPlantPopup = ({
           </div>
 
           {/* Content section */}
-          <div className="p-6">
+          <div className="px-4 pt-4">
             {/* Water information cards */}
-            <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
               {/* Water level card */}
               <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 shadow-sm">
                 <h3 className="text-sm font-semibold text-blue-800 mb-2">
@@ -119,44 +119,46 @@ export const SelectedPlantPopup = ({
               </div>
 
               {/* Last watered card */}
-              <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 shadow-sm">
-                <h3 className="text-sm font-semibold text-purple-800 mb-2">
+              <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+                <h3 className="text-sm font-semibold text-blue-800 mb-2">
                   Last Watered
                 </h3>
-                <div className="flex items-center gap-3"></div>
-                <div className="w-10 h-10 rounded-full bg-purple-200 flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-purple-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <span className="text-lg font-bold text-purple-800">
-                    {wateredDays} days ago
-                  </span>
-                  <p className="text-xs text-purple-600">{plant.lastWatered}</p>
-                </div>
-              </div>
-              {/* Watering frequency card */}
-              <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-xl p-4 shadow-sm">
-                <h3 className="text-sm font-semibold text-green-800 mb-2">
-                  Water Frequency
-                </h3>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center">
+                <div className="flex items-center gap-3 mt-auto">
+                  <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-green-600"
+                      className="h-6 w-6 text-blue-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="text-lg font-bold text-blue-800">
+                      {wateredDays} days ago
+                    </span>
+                    <p className="text-xs text-blue-600">{plant.lastWatered}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Watering frequency card */}
+              <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+                <h3 className="text-sm font-semibold text-blue-800 mb-2">
+                  Water Frequency
+                </h3>
+                <div className="flex items-center gap-3 mt-auto">
+                  <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-blue-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -169,7 +171,7 @@ export const SelectedPlantPopup = ({
                       />
                     </svg>
                   </div>
-                  <span className="text-xl font-bold text-green-800">
+                  <span className="text-xl font-bold text-blue-800">
                     {plant.waterFrequency}
                   </span>
                 </div>
@@ -178,7 +180,7 @@ export const SelectedPlantPopup = ({
           </div>
 
           {/* Plant details */}
-          <div className="grid md:grid-cols-2 gap-8 px-8">
+          <div className="grid md:grid-cols-2 gap-8 px-8 bg-green-50 m-4 p-2 rounded-lg shadow-sm">
             <div>
               <h3 className="text-xl font-semibold border-b pb-2 mb-3">
                 Care Instructions
@@ -200,17 +202,18 @@ export const SelectedPlantPopup = ({
                 </p>
               </div>
             </div>
+          </div>
 
-            <div className="mt-6">
-              <button
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  console.log(`Watering plant ${plant.id}`);
-                }}
-              ></button>
+          <div className="px-4 pb-4">
+            <button
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log(`Watering plant ${plant.id}`);
+              }}
+            >
               Mark as Watered
-            </div>
+            </button>
           </div>
         </>
       </div>
